@@ -22,6 +22,8 @@ module.exports = function(config) {
 
     webpack: {
       mode: 'production',
+      devtool: false,
+      cache: true,
       module: {
         // Suppress power-assert warning
         exprContextCritical: false,
