@@ -43,6 +43,7 @@ describe('react-draggable', function () {
       assert(drag.props.handle === null);
       assert(drag.props.cancel === null);
       assert(drag.props.bounds == false);
+      assert(drag.props.returnToDefaultPosition == false);
       assert(typeof drag.props.onStart === 'function');
       assert(typeof drag.props.onDrag === 'function');
       assert(typeof drag.props.onStop === 'function');

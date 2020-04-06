@@ -203,7 +203,7 @@ var Draggable = /*#__PURE__*/function (_React$Component) {
             y = _this$props$position.y;
         newState.x = x;
         newState.y = y;
-      } else {
+      } else if (_this.props.returnToDefaultPosition) {
         var _this$props$defaultPo = _this.props.defaultPosition,
             _x = _this$props$defaultPo.x,
             _y = _this$props$defaultPo.y;
@@ -265,6 +265,7 @@ var Draggable = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           axis = _this$props.axis,
           bounds = _this$props.bounds,
+          returnToDefaultPosition = _this$props.returnToDefaultPosition,
           children = _this$props.children,
           defaultPosition = _this$props.defaultPosition,
           defaultClassName = _this$props.defaultClassName,
@@ -273,7 +274,7 @@ var Draggable = /*#__PURE__*/function (_React$Component) {
           position = _this$props.position,
           positionOffset = _this$props.positionOffset,
           scale = _this$props.scale,
-          draggableCoreProps = _objectWithoutProperties(_this$props, ["axis", "bounds", "children", "defaultPosition", "defaultClassName", "defaultClassNameDragging", "defaultClassNameDragged", "position", "positionOffset", "scale"]);
+          draggableCoreProps = _objectWithoutProperties(_this$props, ["axis", "bounds", "returnToDefaultPosition", "children", "defaultPosition", "defaultClassName", "defaultClassNameDragging", "defaultClassNameDragged", "position", "positionOffset", "scale"]);
 
       var style = {};
       var svgTransform = null; // If this is controlled, we don't want to move it - unless it's dragging.
@@ -369,6 +370,11 @@ _defineProperty(Draggable, "propTypes", _objectSpread({}, _DraggableCore.default
     top: _propTypes.default.number,
     bottom: _propTypes.default.number
   }), _propTypes.default.string, _propTypes.default.oneOf([false])]),
+
+  /**
+   * `returnToDefaultPosition` Determines if element returns to start position when drag ends.
+   */
+  returnToDefaultPosition: _propTypes.default.bool,
   defaultClassName: _propTypes.default.string,
   defaultClassNameDragging: _propTypes.default.string,
   defaultClassNameDragged: _propTypes.default.string,
@@ -435,6 +441,8 @@ _defineProperty(Draggable, "propTypes", _objectSpread({}, _DraggableCore.default
 _defineProperty(Draggable, "defaultProps", _objectSpread({}, _DraggableCore.default.defaultProps, {
   axis: 'both',
   bounds: false,
+  returnToDefaultPosition: false,
+  dragContainer: null,
   defaultClassName: 'react-draggable',
   defaultClassNameDragging: 'react-draggable-dragging',
   defaultClassNameDragged: 'react-draggable-dragged',

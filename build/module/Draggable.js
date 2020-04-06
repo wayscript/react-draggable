@@ -30,6 +30,7 @@ import log from './utils/log';
   ...$Exact<DraggableCoreProps>,
   axis: 'both' | 'x' | 'y' | 'none',
   bounds: DraggableBounds | string | false,
+  returnToDefaultPosition: boolean,
   defaultClassName: string,
   defaultClassNameDragging: string,
   defaultClassNameDragged: string,
@@ -156,7 +157,7 @@ class Draggable extends React.Component
         } = this.props.position;
         newState.x = x;
         newState.y = y;
-      } else {
+      } else if (this.props.returnToDefaultPosition) {
         const {
           x,
           y
@@ -212,6 +213,7 @@ class Draggable extends React.Component
     const {
       axis,
       bounds,
+      returnToDefaultPosition,
       children,
       defaultPosition,
       defaultClassName,
@@ -319,6 +321,11 @@ _defineProperty(Draggable, "propTypes", { // Accepts all props <DraggableCore> a
     top: PropTypes.number,
     bottom: PropTypes.number
   }), PropTypes.string, PropTypes.oneOf([false])]),
+
+  /**
+   * `returnToDefaultPosition` Determines if element returns to start position when drag ends.
+   */
+  returnToDefaultPosition: PropTypes.bool,
   defaultClassName: PropTypes.string,
   defaultClassNameDragging: PropTypes.string,
   defaultClassNameDragged: PropTypes.string,
@@ -385,6 +392,8 @@ _defineProperty(Draggable, "propTypes", { // Accepts all props <DraggableCore> a
 _defineProperty(Draggable, "defaultProps", { ...DraggableCore.defaultProps,
   axis: 'both',
   bounds: false,
+  returnToDefaultPosition: false,
+  dragContainer: null,
   defaultClassName: 'react-draggable',
   defaultClassNameDragging: 'react-draggable-dragging',
   defaultClassNameDragged: 'react-draggable-dragged',
