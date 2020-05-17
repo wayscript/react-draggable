@@ -442,7 +442,6 @@ _defineProperty(Draggable, "defaultProps", _objectSpread({}, _DraggableCore.defa
   axis: 'both',
   bounds: false,
   returnToDefaultPosition: false,
-  dragContainer: null,
   defaultClassName: 'react-draggable',
   defaultClassNameDragging: 'react-draggable-dragging',
   defaultClassNameDragged: 'react-draggable-dragged',
